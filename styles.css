@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+/* styles.css */
+>>>>>>> def1c6079daf358385359c92ba9b6441a1e45b0d
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,7 +11,11 @@ body {
 }
 
 header {
+<<<<<<< HEAD
     background: #0d130d;
+=======
+    background: #4CAF50;
+>>>>>>> def1c6079daf358385359c92ba9b6441a1e45b0d
     color: white;
     padding: 1em 0;
     border-bottom: 1px solid #ddd;
