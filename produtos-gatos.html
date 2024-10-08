@@ -1,12 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petshop da Feira - Produtos para Gatos</title>
+    <title>Petshop da Feira - Produtos Para Gatos</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
     <header>
         <div class="container">
             <h1><a href="index.html">Petshop da Feira</a></h1>
@@ -30,27 +28,113 @@
             </div>
         </div>
     </header>
-
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            background: #333;
+            color: #fff;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding-top: 200px; /* Espaço para o header fixo */
+        }
+        nav {
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .galeria-produtos {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .produto {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            flex: 1 0 30%; /* Três produtos por linha */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .produto img {
+            max-width: 100%;
+            height: auto;
+        }
+        .quantity {
+            width: 50px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
     <section id="produtos-gatos">
         <div class="container">
             <h2>Produtos para Gatos</h2>
             <div class="galeria-produtos">
                 <div class="produto">
-                    <img src="racao-gatos.jpg" alt="Ração para Gatos">
+                    <img src="images/racao-gatos.jpg" alt="Ração para Gatos">
                     <p>Ração para Gatos</p>
+                    <input type="number" class="quantity" value="1" min="1" id="qty-1">
+                    <button onclick="addToCart('Ração para Gatos', document.getElementById('qty-1').value)">Adicionar ao Carrinho</button>
                 </div>
                 <div class="produto">
-                    <img src="arranhador.jpg" alt="Arranhador para Gatos">
+                    <img src="images/arranhador.jpg" alt="Arranhador para Gatos">
                     <p>Arranhador para Gatos</p>
+                    <input type="number" class="quantity" value="1" min="1" id="qty-2">
+                    <button onclick="addToCart('Arranhador para Gatos', document.getElementById('qty-2').value)">Adicionar ao Carrinho</button>
                 </div>
                 <div class="produto">
-                    <img src="brinquedo-gato.jpg" alt="Brinquedo para Gatos">
+                    <img src="images/brinquedo-gato.jpg" alt="Brinquedo para Gatos">
                     <p>Brinquedo para Gatos</p>
+                    <input type="number" class="quantity" value="1" min="1" id="qty-3">
+                    <button onclick="addToCart('Brinquedo para Gatos', document.getElementById('qty-3').value)">Adicionar ao Carrinho</button>
                 </div>
                 <div class="produto">
-                    <img src="caixa-transporte.jpg" alt="Caixa de Transporte">
+                    <img src="images/caixa-transporte.jpg" alt="Caixa de Transporte">
                     <p>Caixa de Transporte</p>
+                    <input type="number" class="quantity" value="1" min="1" id="qty-4">
+                    <button onclick="addToCart('Caixa de Transporte', document.getElementById('qty-4').value)">Adicionar ao Carrinho</button>
                 </div>
+            </div>
+            <div>
+                <a href="carrinho.html"><button>Ver Carrinho</button></a>
             </div>
         </div>
     </section>
@@ -72,5 +156,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function addToCart(product, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.product === product);
+            if (existingProduct) {
+                existingProduct.quantity += parseInt(quantity);
+            } else {
+                cart.push({ product, quantity: parseInt(quantity) });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${quantity} ${product}(s) foram adicionados ao carrinho.`);
+        }
+    </script>
 </body>
 </html>

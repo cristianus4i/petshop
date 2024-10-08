@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Petshop da Feira</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 100px; /* Espaço para o header fixo */
+        }
+        .carrinho-item {
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Petshop da Feira</a></h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Carrinho</h2>
+        <div id="itens-carrinho"></div>
+        <div id="total"></div>
+        <a href="produtos-cachorros.html"><button>Continuar Comprando</button></a>
+    </div>
+
+    <script>
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('itens-carrinho');
+            const total = document.getElementById('total');
+            cartItems.innerHTML = '';
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                cartItems.innerHTML += `<div class="carrinho-item">${item.quantity} x ${item.product}</div>`;
+                totalPrice += item.quantity * 10; // Supondo que cada produto custa 10 (substitua pelo valor real)
+            });
+
+            total.innerHTML = `Total: R$ ${totalPrice.toFixed(2)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+</body>
+</html>
